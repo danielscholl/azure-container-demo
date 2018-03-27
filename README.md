@@ -65,7 +65,7 @@ __Premium SKU__
 - 500 GB Storage
 - 100 MBps Download 50 MBps Upload
 - 100 Web Hooks
-- $5.00 /month
+- $50.00 /month
 
 ### Configure a Registry
 

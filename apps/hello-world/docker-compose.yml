@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  helloworld:
+    image: helloworld
+    ports:
+      - '8000:80'

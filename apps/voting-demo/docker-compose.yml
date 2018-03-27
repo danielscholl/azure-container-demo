@@ -1,0 +1,18 @@
+votinglb:
+  image: dockercloud/haproxy
+  links:
+    - voting
+  ports:
+    - '80:80'
+voting:
+  build: voting/
+  links:
+    - redis
+results:
+  build: results/
+  links:
+    - redis
+  ports:
+    - "8000:80"
+redis:
+  image: redis

@@ -1,0 +1,32 @@
+redis:
+  image: 'redis:latest'
+  tags:
+    - Prod
+results:
+  image: 'danielscholl/results:master'
+  autoredeploy: true
+  links:
+    - redis
+  ports:
+    - '8000:80'
+  restart: always
+  tags:
+    - Prod
+voting:
+  image: 'danielscholl/voting:master'
+  autoredeploy: true
+  links:
+    - redis
+  restart: always
+  tags:
+    - Prod
+votinglb:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - voting
+  ports:
+    - '80:80'
+  roles:
+    - global
+  tags:
+    - Prod

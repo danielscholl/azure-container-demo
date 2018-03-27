@@ -1,0 +1,32 @@
+redis:
+  image: 'redis:latest'
+  tags:
+    - Staging
+results:
+  image: 'danielscholl/results:latest'
+  autoredeploy: true
+  links:
+    - redis
+  ports:
+    - '8000:80'
+  restart: always
+  tags:
+    - Staging
+voting:
+  image: 'danielscholl/voting:latest'
+  autoredeploy: true
+  links:
+    - redis
+  restart: always
+  tags:
+    - Staging
+votinglb:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - voting
+  ports:
+    - '80:80'
+  roles:
+    - global
+  tags:
+    - Staging

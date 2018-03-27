@@ -1,0 +1,25 @@
+redis:
+  image: 'redis:latest'
+results:
+  autoredeploy: true
+  image: 'danielscholl/results:latest'
+  links:
+    - redis
+  ports:
+    - '8000:80'
+  restart: always
+voting:
+  autoredeploy: true
+  image: 'danielscholl/voting:latest'
+  links:
+    - redis
+  restart: always
+  target_num_containers: 4
+votinglb:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - voting
+  ports:
+    - '80:80'
+  roles:
+    - global
